@@ -14,16 +14,46 @@ struct RecipeListView: View {
     @StateObject var viewModel = RecipeListViewModel()
     @State private var isShowingRecipe = false
     @State private var selectedRecipe: Recipe?
+    @State private var searchQuery = ""
+    
+    private var filteredRecipes: [Recipe] {
+        if searchQuery.isEmpty {
+            return viewModel.recipes
+        } else {
+            return viewModel.recipes.filter {
+                $0.name.localizedCaseInsensitiveContains(searchQuery) ||
+                $0.cuisine.localizedCaseInsensitiveContains(searchQuery)
+            }
+        }
+    }
     
     var body: some View {
             ZStack{
-                List(viewModel.recipes) { recipe in
-                    RecipeRow(recipe: recipe)
-                        .onTapGesture {
-                                selectedRecipe = recipe
-                                isShowingRecipe = true
-                        } .disabled(isShowingRecipe)
-                } .onAppear {
+                VStack{
+                    Text("Fetch N' Feast")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                        .padding(.top, 20)
+                        .shadow(radius: 5)
+                    
+                    TextField("Search by name or cuisine", text: $searchQuery)
+                        .padding(10)
+                        .background(Color.orange)
+                        .cornerRadius(10)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 10)
+                    
+                    List(filteredRecipes) { recipe in
+                        RecipeRow(recipe: recipe)
+                            .onTapGesture {
+                                    selectedRecipe = recipe
+                                    isShowingRecipe = true
+                            } .disabled(isShowingRecipe)
+                    }
+                }
+                 .onAppear {
                     viewModel.getRecipes()
                 }
                 
