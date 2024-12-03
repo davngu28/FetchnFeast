@@ -12,14 +12,26 @@ import SwiftUI
 struct RecipeListView: View {
     
     @StateObject var viewModel = RecipeListViewModel()
+    @State private var isShowingRecipe = false
+    @State private var selectedRecipe: Recipe?
     
     var body: some View {
             ZStack{
                 List(viewModel.recipes) { recipe in
                     RecipeRow(recipe: recipe)
+                        .onTapGesture {
+                                selectedRecipe = recipe
+                                isShowingRecipe = true
+                        } .disabled(isShowingRecipe)
                 } .onAppear {
                     viewModel.getRecipes()
                 }
+                
+                if isShowingRecipe, let selectedRecipe = selectedRecipe {
+                    RecipeDetailView(recipe: selectedRecipe, isShowingRecipe: $isShowingRecipe)
+                        
+                }
+                
                 if viewModel.isLoading {
                     ProgressView("Fetching recipes...")
                         .zIndex(1)

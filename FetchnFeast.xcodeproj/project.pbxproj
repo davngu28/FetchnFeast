@@ -21,6 +21,7 @@
 		96EEE7912CFF7EFE00ACB06B /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EEE7902CFF7EFE00ACB06B /* ErrorAlert.swift */; };
 		96EEE7932CFF7F2800ACB06B /* FFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EEE7922CFF7F2800ACB06B /* FFError.swift */; };
 		96EEE7952CFF87C800ACB06B /* ImageLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EEE7942CFF87C800ACB06B /* ImageLoad.swift */; };
+		96EEE7972CFF8DBE00ACB06B /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EEE7962CFF8DBE00ACB06B /* RecipeDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		96EEE7902CFF7EFE00ACB06B /* ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
 		96EEE7922CFF7F2800ACB06B /* FFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFError.swift; sourceTree = "<group>"; };
 		96EEE7942CFF87C800ACB06B /* ImageLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoad.swift; sourceTree = "<group>"; };
+		96EEE7962CFF8DBE00ACB06B /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				96EEE75E2CFF66CE00ACB06B /* FetchnFeastApp.swift */,
 				96EEE78A2CFF6A7B00ACB06B /* Recipe.swift */,
 				96EEE7882CFF699D00ACB06B /* RecipeListView.swift */,
+				96EEE7962CFF8DBE00ACB06B /* RecipeDetailView.swift */,
 				96EEE78C2CFF7E9000ACB06B /* RecipeListViewModel.swift */,
 				96EEE7602CFF66CE00ACB06B /* ContentView.swift */,
 				96EEE78E2CFF7EC000ACB06B /* NetworkManager.swift */,
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96EEE78F2CFF7EC000ACB06B /* NetworkManager.swift in Sources */,
+				96EEE7972CFF8DBE00ACB06B /* RecipeDetailView.swift in Sources */,
 				96EEE7892CFF699D00ACB06B /* RecipeListView.swift in Sources */,
 				96EEE7612CFF66CE00ACB06B /* ContentView.swift in Sources */,
 				96EEE75F2CFF66CE00ACB06B /* FetchnFeastApp.swift in Sources */,
