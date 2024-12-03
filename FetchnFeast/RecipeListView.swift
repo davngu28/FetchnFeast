@@ -17,8 +17,7 @@ struct RecipeListView: View {
             ZStack{
                 List(viewModel.recipes) { recipe in
                     HStack {
-                        Image("samplePhoto")
-                            .resizable()
+                        RecipeRemoteImage(urlString: recipe.photo_url_small)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 120, height: 90)
                             .clipShape(RoundedRectangle(cornerRadius: 5))
