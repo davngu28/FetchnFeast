@@ -16,22 +16,7 @@ struct RecipeListView: View {
     var body: some View {
             ZStack{
                 List(viewModel.recipes) { recipe in
-                    HStack {
-                        RecipeRemoteImage(urlString: recipe.photo_url_small)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 120, height: 90)
-                            .clipShape(RoundedRectangle(cornerRadius: 5))
-                    
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text(recipe.name)
-                                .font(.title2)
-                                .fontWeight(.medium)
-                        
-                            Text(recipe.cuisine)
-                                .foregroundColor(.gray)
-                                .fontWeight(.semibold)
-                        } .padding(.leading)
-                    }
+                    RecipeRow(recipe: recipe)
                 } .onAppear {
                     viewModel.getRecipes()
                 }
@@ -49,6 +34,30 @@ struct RecipeListView: View {
         }
         
     }
+
+struct RecipeRow: View {
+    let recipe: Recipe
+    
+    var body: some View {
+        HStack {
+            RecipeRemoteImage(urlString: recipe.photo_url_small)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 120, height: 90)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+            
+            VStack(alignment: .leading, spacing: 5) {
+                Text(recipe.name)
+                    .font(.title2)
+                    .fontWeight(.medium)
+                
+                Text(recipe.cuisine)
+                    .foregroundColor(.gray)
+                    .fontWeight(.semibold)
+            }
+            .padding(.leading)
+        }
+    }
+}
 
 #Preview {
     RecipeListView()
