@@ -39,26 +39,33 @@ struct RecipeListView: View {
                     
                     SearchBar(searchQuery: $searchQuery)
                     
-                    List(filteredRecipes) { recipe in
-                        RecipeRow(recipe: recipe)
-                            .onTapGesture {
-                                    selectedRecipe = recipe
-                                    isShowingRecipe = true
-                            } .disabled(isShowingRecipe)
+                    if viewModel.isLoading {
+                        ProgressView("Fetching recipes...")
+                            .padding(.top, 50)
+                    } else if filteredRecipes.isEmpty {
+                        
+                        EmptyStateView().refreshable{
+                            viewModel.getRecipes()
+                        }
+                        
+                    } else {
+                        RecipeList(
+                            recipes: filteredRecipes,
+                            isShowingRecipe: $isShowingRecipe,
+                            selectedRecipe: $selectedRecipe
+                        )
+                        .refreshable{
+                            viewModel.getRecipes()
+                        }
+                        .blur(radius: isShowingRecipe ? 20 : 0)
                     }
-                }
-                 .onAppear {
+                } .onAppear {
                     viewModel.getRecipes()
                 }
                 
                 if isShowingRecipe, let selectedRecipe = selectedRecipe {
                     RecipeDetailView(recipe: selectedRecipe, isShowingRecipe: $isShowingRecipe)
                         
-                }
-                
-                if viewModel.isLoading {
-                    ProgressView("Fetching recipes...")
-                        .zIndex(1)
                 }
             } .alert(item: $viewModel.alertItem) { alert in
                 Alert(
@@ -106,6 +113,36 @@ struct SearchBar: View {
             .foregroundColor(.white)
             .padding(.horizontal, 20)
             .padding(.bottom, 10)
+    }
+}
+
+struct EmptyStateView: View {
+    var body: some View {
+        ScrollView {
+            VStack {
+                Text("Sorry, no recipes are available")
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .padding(.top, 50)
+            }
+        }
+    }
+}
+
+struct RecipeList: View {
+    let recipes: [Recipe]
+    @Binding var isShowingRecipe: Bool
+    @Binding var selectedRecipe: Recipe?
+
+    var body: some View {
+        List(recipes) { recipe in
+            RecipeRow(recipe: recipe)
+                .onTapGesture {
+                        selectedRecipe = recipe
+                        isShowingRecipe = true
+                }
+                .disabled(isShowingRecipe)
+        }
     }
 }
 
