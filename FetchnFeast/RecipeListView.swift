@@ -37,13 +37,7 @@ struct RecipeListView: View {
                         .padding(.top, 20)
                         .shadow(radius: 5)
                     
-                    TextField("Search by name or cuisine", text: $searchQuery)
-                        .padding(10)
-                        .background(Color.orange)
-                        .cornerRadius(10)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 10)
+                    SearchBar(searchQuery: $searchQuery)
                     
                     List(filteredRecipes) { recipe in
                         RecipeRow(recipe: recipe)
@@ -98,6 +92,20 @@ struct RecipeRow: View {
             }
             .padding(.leading)
         }
+    }
+}
+
+struct SearchBar: View {
+    @Binding var searchQuery: String
+
+    var body: some View {
+        TextField("Search by name or cuisine", text: $searchQuery)
+            .padding(10)
+            .background(Color.orange)
+            .cornerRadius(10)
+            .foregroundColor(.white)
+            .padding(.horizontal, 20)
+            .padding(.bottom, 10)
     }
 }
 
