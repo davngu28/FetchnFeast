@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		96EEE75F2CFF66CE00ACB06B /* FetchnFeastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EEE75E2CFF66CE00ACB06B /* FetchnFeastApp.swift */; };
-		96EEE7612CFF66CE00ACB06B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EEE7602CFF66CE00ACB06B /* ContentView.swift */; };
 		96EEE7632CFF66CE00ACB06B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96EEE7622CFF66CE00ACB06B /* Assets.xcassets */; };
 		96EEE7662CFF66CE00ACB06B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96EEE7652CFF66CE00ACB06B /* Preview Assets.xcassets */; };
 		96EEE7702CFF66CF00ACB06B /* FetchnFeastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EEE76F2CFF66CF00ACB06B /* FetchnFeastTests.swift */; };
@@ -44,7 +43,6 @@
 /* Begin PBXFileReference section */
 		96EEE75B2CFF66CE00ACB06B /* FetchnFeast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchnFeast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96EEE75E2CFF66CE00ACB06B /* FetchnFeastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchnFeastApp.swift; sourceTree = "<group>"; };
-		96EEE7602CFF66CE00ACB06B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		96EEE7622CFF66CE00ACB06B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96EEE7652CFF66CE00ACB06B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		96EEE76B2CFF66CF00ACB06B /* FetchnFeastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchnFeastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,7 +113,6 @@
 				96EEE7882CFF699D00ACB06B /* RecipeListView.swift */,
 				96EEE7962CFF8DBE00ACB06B /* RecipeDetailView.swift */,
 				96EEE78C2CFF7E9000ACB06B /* RecipeListViewModel.swift */,
-				96EEE7602CFF66CE00ACB06B /* ContentView.swift */,
 				96EEE78E2CFF7EC000ACB06B /* NetworkManager.swift */,
 				96EEE7942CFF87C800ACB06B /* ImageLoad.swift */,
 				96EEE7902CFF7EFE00ACB06B /* ErrorAlert.swift */,
@@ -284,7 +281,6 @@
 				96EEE78F2CFF7EC000ACB06B /* NetworkManager.swift in Sources */,
 				96EEE7972CFF8DBE00ACB06B /* RecipeDetailView.swift in Sources */,
 				96EEE7892CFF699D00ACB06B /* RecipeListView.swift in Sources */,
-				96EEE7612CFF66CE00ACB06B /* ContentView.swift in Sources */,
 				96EEE75F2CFF66CE00ACB06B /* FetchnFeastApp.swift in Sources */,
 				96EEE78D2CFF7E9000ACB06B /* RecipeListViewModel.swift in Sources */,
 				96EEE7952CFF87C800ACB06B /* ImageLoad.swift in Sources */,

@@ -16,38 +16,20 @@ final class NetworkManager {
 
     private init() {}
 
-    func getRecipes(completed: @escaping (Result<[Recipe], FFError>) -> Void){
+    
+    func getRecipes() async throws -> [Recipe]{
         guard let url = URL(string: url) else {
-            completed(.failure(.invalidURL))
-            return
+            throw FFError.invalidURL
         }
 
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-            if let _ = error {
-                completed(.failure(.unableToComplete))
-                return
-            }
-
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.invalidResponse))
-                return
-            }
-
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
+        let (data, _) = try await URLSession.shared.data(from: url)
 
             do {
                 let decoder = JSONDecoder()
-                let decodedResponse = try decoder.decode(RecipeResponse.self, from: data)
-                completed(.success(decodedResponse.recipes))
+                return try decoder.decode(RecipeResponse.self, from: data).recipes
             } catch {
-                completed(.failure(.invalidData))
+                throw FFError.invalidData
             }
-        }
-
-        task.resume()
     }
     
     func downloadImage(fromURLString: String, completed: @escaping (UIImage?) ->Void ){
