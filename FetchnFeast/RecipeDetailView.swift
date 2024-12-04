@@ -14,62 +14,65 @@ struct RecipeDetailView: View {
     
     var body: some View {
         ZStack {
-            RecipeRemoteImage(urlString: recipe.photo_url_large)
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 320, height: 550)
-                .clipped()
-
+            backgroundImage
+            
             VStack(spacing: 20) {
-                // Back button
-                HStack {
-                    Button(action: {
-                        isShowingRecipe = false
-                    }) {
-                        Image(systemName: "chevron.left")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.black.opacity(0.6))
-                            .clipShape(Circle())
-                    }
-                    .padding(.leading, 10)
-                    
+                HStack{
+                    backButton
                     Spacer()
-                }
-                .padding(.top, 20)
-
-                Spacer() // Pushes content below the back button
-                
-                // Recipe Name
-                Text(recipe.name)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .shadow(radius: 2)
-                
-                // Buttons for source and YouTube
-                if let sourceURL = recipe.source_url, !sourceURL.isEmpty {
-                    Link("Source Recipe", destination: URL(string: sourceURL)!)
-                        .buttonStyle(RecipeButtonStyle())
-                }
-
-                if let youtubeURLString = recipe.youtube_url, // Ensure the string exists
-                   let youtubeURL = URL(string: youtubeURLString), // Ensure it's a valid URL
-                   !youtubeURLString.isEmpty { // Ensure it's not empty
-                    Link("Watch on YouTube", destination: youtubeURL)
-                        .buttonStyle(RecipeButtonStyle())
-                }
-                
-                Spacer() // Pushes everything up
-                
+                }.padding(.top,20)
+                    .padding(.leading, 10)
+                Spacer()
+                recipeDetails
+                Spacer()
             }
             .padding()
         }
         .frame(width: 300, height: 550)
         .background(Color(.systemBackground))
         .shadow(radius: 45)
-        
-        Spacer()
+    }
+
+    private var backgroundImage: some View {
+        RecipeRemoteImage(urlString: recipe.photo_url_large)
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 320, height: 550)
+            .clipped()
+    }
+
+    private var backButton: some View {
+        Button(action: {
+            isShowingRecipe = false
+        }) {
+            Image(systemName: "chevron.left")
+                .font(.title2)
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.black.opacity(0.6))
+                .clipShape(Circle())
+        }
+    }
+
+    private var recipeDetails: some View {
+        VStack(spacing: 10) {
+            Text(recipe.name)
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+                .shadow(radius: 2)
+
+            if let sourceURL = recipe.source_url, !sourceURL.isEmpty {
+                Link("Source Recipe", destination: URL(string: sourceURL)!)
+                    .buttonStyle(RecipeButtonStyle())
+            }
+
+            if let youtubeURLString = recipe.youtube_url,
+               let youtubeURL = URL(string: youtubeURLString),
+               !youtubeURLString.isEmpty {
+                Link("Watch on YouTube", destination: youtubeURL)
+                    .buttonStyle(RecipeButtonStyle())
+            }
+        }
     }
 }
 
