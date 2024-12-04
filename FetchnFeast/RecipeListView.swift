@@ -30,14 +30,10 @@ struct RecipeListView: View {
     var body: some View {
             ZStack{
                 VStack{
-                    Text("Fetch N' Feast")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .padding(.top, 20)
-                        .shadow(radius: 5)
+                    Header()
                     
                     SearchBar(searchQuery: $searchQuery)
+                        .allowsHitTesting(!isShowingRecipe)
                     
                     if viewModel.isLoading {
                         ProgressView("Fetching recipes...")
@@ -58,6 +54,7 @@ struct RecipeListView: View {
                             viewModel.getRecipes()
                         }
                         .blur(radius: isShowingRecipe ? 20 : 0)
+                        .allowsHitTesting(!isShowingRecipe)
                     }
                 } .onAppear {
                     viewModel.getRecipes()
@@ -143,6 +140,28 @@ struct RecipeList: View {
                 }
                 .disabled(isShowingRecipe)
         }
+    }
+}
+
+struct Header: View {
+    var body: some View {
+        HStack {
+            Text("Fetch N' Feast")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+                .shadow(radius: 5)
+            
+            Spacer()
+                .frame(width:10)
+            
+            Image("sampleLogo")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 50, height: 50)
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 10)
     }
 }
 
